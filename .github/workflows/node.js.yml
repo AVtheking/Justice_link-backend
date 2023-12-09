@@ -31,4 +31,4 @@ jobs:
     - run: |
         touch .env
         echo '${{ secrets.Secret }}' > .env
-    - run: pm2 restart Ilearn 
+    # - run: pm2 restart Ilearn 
