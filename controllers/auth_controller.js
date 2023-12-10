@@ -1,3 +1,4 @@
+const { ErrorHandler } = require("../middlewares/error_middleware");
 const User = require("../models/user_model");
 const { registerSchema, loginSchema } = require("../utils/joi");
 const bcryptjs = require("bcryptjs");
