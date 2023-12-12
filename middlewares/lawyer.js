@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const { User, Lawyer } = require("../models");
 const { ErrorHandler } = require("./error_middleware");
 
-const lawyer = async (req, res, next) => {
+const  lawyer = async (req, res, next) => {
   try {
     let token;
     if (req.headers["authorization"]) {
