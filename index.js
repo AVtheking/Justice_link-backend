@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const { errorMiddleware } = require("./middlewares/error_middleware");
-const { authRouter, lawyerRouter } = require("./routes");
+const { authRouter, lawyerRouter, meetingRouter } = require("./routes");
 const { User } = require("./models");
 require("dotenv").config();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(errorMiddleware);
 app.use(authRouter, errorMiddleware);
 app.use("/lawyer", lawyerRouter, errorMiddleware);
+app.use(meetingRouter, errorMiddleware);
 
 mongoose.connect(DB).then(() => {
   app.listen(PORT, () => {

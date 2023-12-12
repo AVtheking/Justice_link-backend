@@ -15,6 +15,14 @@ const meetingCtrl = {
       next(e);
     }
   },
+  sendMeetingRequest: async (req, res, next) => {
+    const { lawyerId } = req.body;
+    try {
+     
+    } catch (e) {
+      next(e);
+   }
+  },
   getMeetings: async (req, res, next) => {
     try {
       const meetings = await Meeting.find({ lawyerId: req.user._id });
@@ -46,3 +54,4 @@ const meetingCtrl = {
     }
   },
 };
+module.exports=meetingCtrl;

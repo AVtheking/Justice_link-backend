@@ -10,18 +10,11 @@ const meetingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  meetingDate: {
-    type: String,
-    required: true,
-  },
-  meetingTime: {
-    type: String,
-    required: true,
-  },
-  meetingDetail: [meetingDetailsSchema],
+
+  meetingDetail: meetingDetailsSchema,
   meetingStatus: {
     type: String,
-    required: true,
+    default: "pending",
   },
 });
 const Meeting = new mongoose.model("Meeting", meetingSchema);

@@ -1,10 +1,11 @@
 const express = require("express");
-const { lawyerController } = require("../controllers/index,");
+const { lawyerController, lawyerAuthController } = require("../controllers");
 const lawyer = require("../middlewares/lawyer");
 const lawyerRouter = express.Router();
 
-lawyerRouter.post("/register", lawyerController.register);
-lawyerRouter.post("/login", lawyerController.login);
-lawyerRouter.get("/", lawyer, lawyerController.getlawyerData);
+lawyerRouter.post("/register", lawyerAuthController.register);
+lawyerRouter.post("/login", lawyerAuthController.login);
+lawyerRouter.get("/", lawyer, lawyerAuthController.getlawyerData);
+lawyerRouter.put("/updateProfile", lawyer, lawyerController.updateProfile);
 
 module.exports = lawyerRouter;
