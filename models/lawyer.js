@@ -8,7 +8,7 @@ const lawyerSchema = new mongoose.Schema({
   lawyerId: {
     type: String,
 
-    unique: true,
+    // unique: true,
   },
   lawyerType: {
     type: String,
@@ -28,7 +28,7 @@ const lawyerSchema = new mongoose.Schema({
   lawyerExperience: {
     type: String,
   },
-  location: {
+  bio: {
     type: String,
   },
 });

@@ -1,33 +1,33 @@
 const mongoose = require("mongoose");
 
 const meetingDetailsSchema = new mongoose.Schema({
-  meetingId: {
-    type: String,
-    required: true,
-  },
+  // meetingId: {
+  //   type: String,
+  //   // required: true,
+  // },
   accusedName: {
     type: String,
-    required: true,
+   
   },
   familyMemberName: {
     type: String,
-    required: true,
+    // required: true,
   },
   caseType: {
     type: String,
-    required: true,
+    // required: true,
   },
   opposingLawyerName: {
     type: String,
-    required: true,
+    // required: true,
   },
   caseNo: {
     type: String,
-    required: true,
+    // required: true,
   },
   courtName: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 module.exports = meetingDetailsSchema;
