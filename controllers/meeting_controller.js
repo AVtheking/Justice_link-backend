@@ -105,5 +105,21 @@ const meetingCtrl = {
       next(e);
     }
   },
+  rejectMeeting: async (req, res, next) => {
+    try {
+      const meeting = await Meeting.findById(req.params.id);
+      meeting.status = "rejected";
+      await meeting.save();
+      res.json({
+        success: true,
+        message: "Meeting request rejected successfully",
+        data: {
+          meeting,
+        },
+      });
+    } catch (e) {
+      next(e);
+    }
+  }
 };
 module.exports = meetingCtrl;

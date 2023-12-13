@@ -17,4 +17,14 @@ meetingRouter.get(
   meetingController.getMeetingForClient
 );
 meetingRouter.get("/get-meeting-lawyer", lawyer, meetingController.getMeetings);
+meetingRouter.put(
+  "/accept-meeting-request",
+  lawyer,
+  meetingController.acceptMeeting
+);
+meetingRouter.put(
+  "/reject-meeting-request",
+  lawyer,
+  meetingController.rejectMeeting
+);
 module.exports = meetingRouter;
