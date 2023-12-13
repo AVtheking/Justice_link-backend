@@ -60,13 +60,14 @@ const meetingCtrl = {
   },
   getMeetingForClient: async (req, res, next) => {
     try {
-      const meetings = await Meeting.find({ userId: req.user._id });
+      const lawyerId = req.params.lawyerId;
+      const meeting = await Meeting.findOne({ userId: req.user._id, lawyerId });
       // const lawyer = await Lawyer.findById(meetings.lawyerId);
       res.json({
         success: true,
         message: "Meetings request fetched successfully",
         data: {
-          meetings,
+          meeting,
         },
       });
     } catch (e) {
@@ -120,6 +121,6 @@ const meetingCtrl = {
     } catch (e) {
       next(e);
     }
-  }
+  },
 };
 module.exports = meetingCtrl;

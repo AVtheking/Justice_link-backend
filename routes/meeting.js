@@ -12,7 +12,7 @@ meetingRouter.post(
   meetingController.sendMeetingRequest
 );
 meetingRouter.get(
-  "/get-meeting-client",
+  "/get-meeting-client/:lawyerId",
   auth,
   meetingController.getMeetingForClient
 );
