@@ -60,13 +60,14 @@ const meetingCtrl = {
   },
   getMeetingForClient: async (req, res, next) => {
     try {
-      const meetings = await Meeting.find({ userId: req.user._id });
+      const lawyerId = req.params.lawyerId;
+      const meeting = await Meeting.findOne({ userId: req.user._id, lawyerId });
       // const lawyer = await Lawyer.findById(meetings.lawyerId);
       res.json({
         success: true,
         message: "Meetings request fetched successfully",
         data: {
-          meetings,
+          meeting,
         },
       });
     } catch (e) {
@@ -97,6 +98,22 @@ const meetingCtrl = {
       res.json({
         success: true,
         message: "Meeting request accepted successfully",
+        data: {
+          meeting,
+        },
+      });
+    } catch (e) {
+      next(e);
+    }
+  },
+  rejectMeeting: async (req, res, next) => {
+    try {
+      const meeting = await Meeting.findById(req.params.id);
+      meeting.status = "rejected";
+      await meeting.save();
+      res.json({
+        success: true,
+        message: "Meeting request rejected successfully",
         data: {
           meeting,
         },

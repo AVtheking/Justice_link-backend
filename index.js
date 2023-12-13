@@ -25,13 +25,13 @@ io.on("connection", async (socket) => {
   const messages = await Message.find({});
   socket.emit("messageHistory", messages);
 
-  socket.on("message", async (message) => {
+  socket.on("message", async (data) => {
     const chatMessage = await Message.create({
-      userId: message.userId,
-      message: message.message,
+      userId: data.userId,
+      message: data.message,
     });
-    console.log(message);
-    io.emit("message", message);
+    console.log(data);
+    io.emit("message", data);
   });
   socket.on("disconnect", () => {
     console.log("User disconnected");

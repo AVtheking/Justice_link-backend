@@ -1,5 +1,5 @@
-const { Lawyer } = require("../models");
-const { profileSchema } = require("../utils/joi");
+const { Lawyer, Case } = require("../models");
+const { profileSchema, caseDetailSchema } = require("../utils/joi");
 
 const lawyerCtrl = {
   updateProfile: async (req, res, next) => {
@@ -34,6 +34,45 @@ const lawyerCtrl = {
           lawyer,
         },
       });
+    } catch (e) {
+      next(e);
+    }
+  },
+  updateCaseDetail: async (req, res, next) => {
+    try {
+      const result = await caseDetailSchema.validateAsync(req.body);
+      const {
+        victimName,
+        oppositionName,
+        lastPresentedOn,
+        petitioner,
+        caseNo,
+        respondent,
+        petAdvocates,
+        caseStatus,
+        category,
+        resAdvocates,
+      } = result;
+        const caseDetail = await Case.create({
+            victimName,
+            oppositionName,
+            lastPresentedOn,
+            petitioner,
+            caseNo,
+            respondent,
+            petAdvocates,
+            caseStatus,
+            category,
+            resAdvocates,
+        });
+        await caseDetail.save();
+        res.json({
+            success: true,
+            message: "Case details updated successfully",
+            data: {
+                caseDetail,
+            },
+        });
     } catch (e) {
       next(e);
     }

@@ -32,9 +32,23 @@ const   meetingSchema = Joi.object({
   courtName: Joi.string().required(),
   caseDetails: Joi.string().required(),
 });
+const caseDetailSchema = Joi.object({
+  victimName: Joi.string().required(),
+  oppositionName: Joi.string().required(),
+  lastPresentedOn: Joi.string().required(),
+  petitioner: Joi.string().required(),
+  caseNo: Joi.string().required(),
+  respondent: Joi.string().required(),
+  petAdvocates: Joi.string().required(),  
+  caseStatus: Joi.string().required(),
+  category: Joi.string().required(),
+  resAdvocates: Joi.string().required(),
+
+})
 module.exports = {
   registerSchema,
   loginSchema,
   profileSchema,
   meetingSchema,
+  caseDetailSchema
 };
