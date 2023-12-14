@@ -93,7 +93,7 @@ const meetingCtrl = {
   acceptMeeting: async (req, res, next) => {
     try {
       const meeting = await Meeting.findById(req.params.id);
-      meeting.status = "accepted";
+      meeting.meetingStatus = "accepted";
       await meeting.save();
       res.json({
         success: true,
@@ -109,7 +109,7 @@ const meetingCtrl = {
   rejectMeeting: async (req, res, next) => {
     try {
       const meeting = await Meeting.findById(req.params.id);
-      meeting.status = "rejected";
+      meeting.meetingStatus = "rejected";
       await meeting.save();
       res.json({
         success: true,
