@@ -18,12 +18,12 @@ meetingRouter.get(
 );
 meetingRouter.get("/get-meeting-lawyer", lawyer, meetingController.getMeetings);
 meetingRouter.put(
-  "/accept-meeting-request",
+  "/accept-meeting-request/:id",
   lawyer,
   meetingController.acceptMeeting
 );
 meetingRouter.put(
-  "/reject-meeting-request",
+  "/reject-meeting-request/:id",
   lawyer,
   meetingController.rejectMeeting
 );
