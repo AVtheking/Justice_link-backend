@@ -38,11 +38,12 @@ const lawyerCtrl = {
       next(e);
     }
   },
-  updateCaseDetail: async (req, res, next) => {
+  uploadCaseDetails: async (req, res, next) => {
     try {
       const result = await caseDetailSchema.validateAsync(req.body);
       const {
         victimName,
+        lawyerId,
         oppositionName,
         lastPresentedOn,
         petitioner,
@@ -53,26 +54,82 @@ const lawyerCtrl = {
         category,
         resAdvocates,
       } = result;
-        const caseDetail = await Case.create({
-            victimName,
-            oppositionName,
-            lastPresentedOn,
-            petitioner,
-            caseNo,
-            respondent,
-            petAdvocates,
-            caseStatus,
-            category,
-            resAdvocates,
-        });
-        await caseDetail.save();
-        res.json({
-            success: true,
-            message: "Case details updated successfully",
-            data: {
-                caseDetail,
-            },
-        });
+      const caseDetail = await Case.create({
+        victimName,
+        lawyerId,
+        oppositionName,
+        lastPresentedOn,
+        petitioner,
+        caseNo,
+        respondent,
+        petAdvocates,
+        caseStatus,
+        category,
+        resAdvocates,
+      });
+      await caseDetail.save();
+      res.json({
+        success: true,
+        message: "Case details updated successfully",
+        data: {
+          caseDetail,
+        },
+      });
+    } catch (e) {
+      next(e);
+    }
+  },
+  updateCaseDetails: async (req, res, next) => {
+    const result = await caseDetailSchema.validateAsync(req.body);
+    const {
+      victimName,
+      lawyerId,
+      oppositionName,
+      lastPresentedOn,
+      petitioner,
+      caseNo,
+      respondent,
+      petAdvocates,
+      caseStatus,
+      category,
+      resAdvocates,
+    } = result;
+    const caseDetail = await Case.findOneAndUpdate(
+      { caseNo },
+      {
+        victimName,
+        lawyerId,
+        oppositionName,
+        lastPresentedOn,
+        petitioner,
+        caseNo,
+        respondent,
+        petAdvocates,
+        caseStatus,
+        category,
+        resAdvocates,
+      },
+      { new: true }
+    );
+    res.json({
+      success: true,
+      message: "Case details update successfully",
+      data: {
+        caseDetail,
+      },
+    });
+  },
+  getCaseDetails: async (req, res, next) => {
+    try {
+      const caseNo = req.params.id;
+      const caseDetails = await Case.findOne({ caseNo });
+      res.json({
+        success: true,
+        message: "Case details fetched successfully",
+        data: {
+          caseDetails,
+        },
+      });
     } catch (e) {
       next(e);
     }

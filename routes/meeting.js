@@ -23,7 +23,7 @@ meetingRouter.put(
   meetingController.acceptMeeting
 );
 meetingRouter.put(
-  "/reject-meeting-request/:id",
+  "/reject-meeting-request",
   lawyer,
   meetingController.rejectMeeting
 );
