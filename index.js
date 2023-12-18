@@ -40,9 +40,8 @@ io.on("connection", async (socket) => {
 
 mongoose.connect(DB).then(() => {
   server.listen(PORT, () => {
-    // User.deleteMany({}).then(() => {
-    //   console.log("Users deleted");
-    // });
+    //   Message.deleteMany({}).then(() => {
+    //     console.log("Users deleted");
     console.log(`Server is running on port ${PORT}`);
   });
 });
